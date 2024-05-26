@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '../../../amplify/data/resource';
 
+import { get } from "aws-amplify/api"
+import {Amplify} from "aws-amplify"
+const existingConfig = Amplify.getConfig() 
 const client = generateClient<Schema>();
 
 @Component({
@@ -14,9 +17,11 @@ const client = generateClient<Schema>();
 })
 export class TodosComponent implements OnInit {
   todos: any[] = [];
+  manojData: any = []
 
   ngOnInit(): void {
     this.listTodos();
+    this.manojTest();
   }
 
   listTodos() {
@@ -41,9 +46,31 @@ export class TodosComponent implements OnInit {
       console.error('error creating todos', error);
     }
   }
-    
+
   deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
 
+  manojTest() {
+    this.manojData = JSON.stringify({ name: "manoj" })
+    console.log(existingConfig)
+    this.getItem()
+
+  }
+
+  async getItem() {
+    try {
+      const restOperation = get({
+        apiName: 'manojRestApi',
+        path: 'items'
+      });
+      const response = await restOperation.response;
+      console.log('GET call succeeded: ', response);
+      window.alert(JSON.stringify(response))
+      this.manojData = JSON.stringify(response)
+    } catch (error:any) {
+      console.log('GET call failed: ');
+      console.log(JSON.parse(error.response.body))
+    }
+  }
 }
