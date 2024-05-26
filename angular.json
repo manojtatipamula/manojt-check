@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/@aws-amplify/ui-angular/theme.css",
               "src/styles.css"
             ],
@@ -85,6 +86,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/@aws-amplify/ui-angular/theme.css",
               "src/styles.css"
             ],
