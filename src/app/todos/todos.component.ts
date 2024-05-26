@@ -69,8 +69,8 @@ export class TodosComponent implements OnInit {
       window.alert(JSON.stringify(response))
       this.manojData = JSON.stringify(response)
     } catch (error:any) {
-      console.log('GET call failed: ');
-      console.log(JSON.parse(error.response.body))
+      console.log('GET call failed: check below');
+      console.log(error)
     }
   }
 }

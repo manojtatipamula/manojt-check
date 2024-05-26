@@ -21,12 +21,12 @@ export class AppComponent {
     
   constructor(public authenticator: AuthenticatorService) {
     Amplify.configure(outputs);
-    // const existingConfig = Amplify.getConfig()
-    // Amplify.configure({
-    // ...existingConfig,
-    // API: {
-    //   REST : outputs.custom.API
-    // }
-    // })
+    const existingConfig = Amplify.getConfig()
+    Amplify.configure({
+    ...existingConfig,
+    API: {
+      REST : outputs.custom.API
+    }
+    })
   }
 }
